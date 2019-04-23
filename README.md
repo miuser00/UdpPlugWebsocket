@@ -1,0 +1,2 @@
+# UdpPlugWebsocket
+这是一个独立的可执行Win32服务端程序，用于桥接终端APP和物联网硬件
