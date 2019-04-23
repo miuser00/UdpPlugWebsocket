@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Miuser.NUDP.Sockets.SocketServer">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Members>
+      <Property Name="_clientList" Hidden="true" />
+      <Property Name="_ip" Hidden="true" />
+      <Property Name="_isListen" Hidden="true" />
+      <Property Name="_port" Hidden="true" />
+      <Method Name="EndReceiveFrom" Hidden="true" />
+      <Method Name="HandleConnClientClose" Hidden="true" />
+      <Field Name="Instance" Hidden="true" />
+      <Property Name="IsListening" Hidden="true" />
+      <Method Name="RemoveConnection" Hidden="true" />
+      <Method Name="RemoveInactiveConnection" Hidden="true" />
+      <Method Name="RemoveInactiveConnections" Hidden="true" />
+      <Property Name="RWLock_ClientList" Hidden="true" />
+      <Method Name="SocketServer" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="Miuser.NUDP.Sockets.SocketServer.UdpState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Device\SocketServer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gBQAIQAAAAIEUAggQEBgABAAAkAAAQAAQAiAQAABAAg=</HashCode>
+      <FileName>Device\SocketServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Miuser.NUDP.Sockets.SocketConnection">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Field Name="_server" Hidden="true" />
+      <Method Name="InitTimer" Hidden="true" />
+      <Field Name="LIFELIMIT" Hidden="true" />
+      <Method Name="SocketConnection" Hidden="true" />
+      <Field Name="timer" Hidden="true" />
+      <Method Name="TimerUp" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>wAQEAAAAAAAgQAAAUAAAAAAAAAAAAgAAAAoAAAAACAQ=</HashCode>
+      <FileName>Device\SocketConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

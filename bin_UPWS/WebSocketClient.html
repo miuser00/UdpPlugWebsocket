@@ -1,0 +1,37 @@
+﻿<html>
+<head>
+<script>
+var socket;
+if ("WebSocket" in window) {
+var ws = new WebSocket("ws://127.0.0.1:9000");
+socket = ws;
+ws.onopen = function() {
+console.log('连接成功');
+};
+ws.onmessage = function(evt) {
+var received_msg = evt.data; 
+document.getElementById("showMes").value+=evt.data+"\n";
+};
+ws.onclose = function() {
+alert("断开了连接");
+};
+} else {
+alert("浏览器不支持WebSocket");
+}
+function login(){
+var message=document.getElementById("name").value+":"+document.getElementById("mes").value;
+socket.send(message);
+}
+</script>
+</head>
+<body>
+<textarea rows="3" cols="30" id="showMes" style="width:300px;height:500px;"></textarea>
+<br/>
+<label>名称</label>
+<input type="text" id="name"/>
+<br/>
+<label>消息</label>
+<input type="text" id="mes"/>
+<button onclick="login();">发送</button>
+</body>
+</html>
