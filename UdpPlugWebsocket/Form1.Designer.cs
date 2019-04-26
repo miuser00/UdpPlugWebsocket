@@ -272,7 +272,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "Form1";
-            this.Text = "UdpPlugWebsocket 0.1";
+            this.Text = "UdpPlugWebsocket 0.11";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

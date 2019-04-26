@@ -175,7 +175,7 @@ namespace UdpPlugWebsocket
 
         private void tm_HearBeat_Tick(object sender, EventArgs e)
         {
-            Console.Write("Heatbeating " + DateTime.Now.ToShortDateString());
+            Console.WriteLine("Heatbeating " + DateTime.Now.ToShortTimeString());
         }
     }
 }
