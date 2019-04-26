@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +49,7 @@
             this.tab_Message = new System.Windows.Forms.TabPage();
             this.tab_Error = new System.Windows.Forms.TabPage();
             this.pan_Top = new System.Windows.Forms.Panel();
+            this.tm_HearBeat = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.pan_Left.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -72,7 +74,7 @@
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.系统配置ToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
-            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(12, 25);
             // 
             // 系统配置ToolStripMenuItem
             // 
@@ -94,21 +96,21 @@
             // 系统配置ToolStripMenuItem1
             // 
             this.系统配置ToolStripMenuItem1.Name = "系统配置ToolStripMenuItem1";
-            this.系统配置ToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.系统配置ToolStripMenuItem1.Size = new System.Drawing.Size(212, 26);
             this.系统配置ToolStripMenuItem1.Text = "系统配置";
             this.系统配置ToolStripMenuItem1.Click += new System.EventHandler(this.系统配置ToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.exitToolStripMenuItem.Text = "退出";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // 显示调试信息ToolStripMenuItem
             // 
             this.显示调试信息ToolStripMenuItem.Name = "显示调试信息ToolStripMenuItem";
-            this.显示调试信息ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.显示调试信息ToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.显示调试信息ToolStripMenuItem.Text = "显示调试信息";
             this.显示调试信息ToolStripMenuItem.Click += new System.EventHandler(this.显示调试信息ToolStripMenuItem_Click);
             // 
@@ -239,7 +241,7 @@
             // 
             this.tab_Error.Location = new System.Drawing.Point(4, 4);
             this.tab_Error.Name = "tab_Error";
-            this.tab_Error.Size = new System.Drawing.Size(848, 80);
+            this.tab_Error.Size = new System.Drawing.Size(848, 78);
             this.tab_Error.TabIndex = 2;
             this.tab_Error.Text = "Error";
             this.tab_Error.UseVisualStyleBackColor = true;
@@ -253,6 +255,12 @@
             this.pan_Top.Name = "pan_Top";
             this.pan_Top.Size = new System.Drawing.Size(856, 507);
             this.pan_Top.TabIndex = 4;
+            // 
+            // tm_HearBeat
+            // 
+            this.tm_HearBeat.Enabled = true;
+            this.tm_HearBeat.Interval = 10000;
+            this.tm_HearBeat.Tick += new System.EventHandler(this.tm_HearBeat_Tick);
             // 
             // Form1
             // 
@@ -300,6 +308,7 @@
         private System.Windows.Forms.TabPage tab_Message;
         public System.Windows.Forms.Panel pan_Top;
         private System.Windows.Forms.ToolStripMenuItem 显示调试信息ToolStripMenuItem;
+        private System.Windows.Forms.Timer tm_HearBeat;
     }
 }
 

@@ -172,5 +172,10 @@ namespace UdpPlugWebsocket
             SetupForm.cfg.EnableScreenLog = !SetupForm.cfg.EnableScreenLog;
             显示调试信息ToolStripMenuItem.Checked = SetupForm.cfg.EnableScreenLog;
         }
+
+        private void tm_HearBeat_Tick(object sender, EventArgs e)
+        {
+            Console.Write("Heatbeating " + DateTime.Now.ToShortDateString());
+        }
     }
 }
