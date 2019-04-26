@@ -32,11 +32,11 @@
 ![](.\document\webtest.png)
 
 ## 目录结构 ##
-	.\UdpPlugWebsocket 						UPWS服务程序（主服务程序）	
-	.\UdpPlugWebsocket\UdpExample 			UDP测试程序 	
-	.\UPW_Browser							Websocket测试程序
-	.\bin_UPWS								编译后的Win32项目二进制文
-	...										其余目录为参考代码目录，可删除	
+	.\UdpPlugWebsocket                  UPWS服务程序（主服务程序）	
+	.\UdpPlugWebsocket\UdpExample       UDP测试程序 	
+	.\UPW_Browser                       Websocket测试程序
+	.\bin_UPWS                          编译后的Win32项目二进制文
+	...                                 其余目录为参考代码目录，可删除	
 
 
 ##编译环境##

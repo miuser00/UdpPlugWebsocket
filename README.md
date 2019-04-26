@@ -26,11 +26,11 @@
 
 ##UDP通讯测试##
 
-	运行.\UdpExample\client\bin\Debug\client.exe 在程序控制台中输入如下数据包
-	004832A08000000000200000000000000001234testtest05 即可在终端设备页面看到本机的连接。
+- 运行.\UdpExample\client\bin\Debug\client.exe 在程序控制台中输入如下数据包
+- 004832A08000000000200000000000000001234testtest05 即可在终端设备页面看到本机的连接。
 ![](./document/clienttest.png)
 ## Websocket通讯测试 ##
-	任意支持websocket的浏览器中运行.\UPW_Browser\index.html?ID=0000000002&MM=0000000000000000与UDP测试程序建立连接（参数区分大小写）
+- 任意支持websocket的浏览器中运行.\UPW_Browser\index.html?ID=0000000002&MM=0000000000000000与UDP测试程序建立连接（参数区分大小写）
 ![](./document/webtest.png)
 
 ## 目录结构 ##
@@ -45,10 +45,10 @@
 Visual Studio 2015,C#,Win10
 	
 ## 使用到的开源库 ##
-	Websocket-Sharp
-	https://github.com/sta/websocket-sharp
-	Coldairarrow.Util.Sockets	
-	https://github.com/Coldairarrow/Sockets
+- Websocket-Sharp
+- https://github.com/sta/websocket-sharp
+- Coldairarrow.Util.Sockets	
+- https://github.com/Coldairarrow/Sockets
 
 
 ## 关键词  ##
