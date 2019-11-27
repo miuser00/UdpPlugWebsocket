@@ -58,13 +58,13 @@ Visual Studio 2015,C#,Win10
 
 您可以尝试在以下地址测试UPWS服务器
 
-UDP服务端口：udp://box.miuser.net:7101 （Luat 2G通讯模块连接的UDP端口）
+- UDP服务端口：udp://box.miuser.net:7101 （Luat 2G通讯模块连接的UDP端口）
 
-Websocket服务端口：ws://box.miuser.net:9000 （前端js代码连接的websocket端口）
+- Websocket服务端口：ws://box.miuser.net:9000 （前端js代码连接的websocket端口）
 
-H5前端测试页面地址：http://www.miuser.net/box/switch.htm （需要再地址上加上设备参数后缀再使用）
+- H5前端测试页面地址：http://www.miuser.net/box/switch.htm （需要再地址上加上设备参数后缀再使用）
 
-前端测试样例：http://www.miuser.net/box/switch.htm?ID=9030026845&MM=HlPpA86131853284 （请自行修改ID和MM）
+- 前端测试样例：http://www.miuser.net/box/switch.htm?ID=9030026845&MM=HlPpA86131853284 （请自行修改ID和MM）
 	
 ## 使用到的开源库 ##
 - 
@@ -72,7 +72,7 @@ H5前端测试页面地址：http://www.miuser.net/box/switch.htm （需要再�
 - https://github.com/sta/websocket-sharp
 - Coldairarrow.Util.Sockets	
 - https://github.com/Coldairarrow/Sockets
-  https://github.com/miuser00/V3R_DemoBoard
+- https://github.com/miuser00/V3R_DemoBoard
 
 ## 关键词  ##
 
