@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  	<meta charset="UTF-8">
+	<meta name="viewport" content="width=480" />
+  	<title>Websocket开关</title>
+  	<link rel="stylesheet" href="css/normalize.min.css">
+  	<link rel="stylesheet" href="css/style.css">
+	<SCRIPT src="./main/jquery-1.8.3.min.js"></SCRIPT>
+	<script src="./main/reconnecting-websocket.min.js" ></script>
+	<SCRIPT src="main/JustGage.js"></SCRIPT>
+</head>
+<body>
+<h1>Websocket 开关控制器<a href="www.miuser.net" target="blank"></a></h1>
+<!-- Inspiration – https://dribbble.com/shots/525358-Buttons-Lights-Shadows?list=searches&tag=toggle_button&offset=10 -->
+		<h2 class="headingOuter"><div align="center" id="online" >点击控制电源插座</div></h2>
+		<div class="toggle toggle--knob">
+			<input type="checkbox" checked onclick="setSwitch()" id="toggle--knob" class="toggle--checkbox">
+			<label class="toggle--btn" for="toggle--knob"><span class="toggle--feature" data-label-on="on"  data-label-off="off"></span></label>
+		</div>
+		<h2><div align="center" id="device_online" >设备状态未知</div></h2>
+		<h2><div align="center" id="ID" >ID:0000000000 </div><div align="center" id="msg" >created by miuser</div></h2>
+
+</body>
+<script>
+    var socket;
+    var TTL;
+    var remoteSWStatus
+    // window.onerror=function (message) {
+    //     try{
+    //         console.log(message);
+    //     }
+    //     catch(ex){}
+    // }
+    var repeatLoopUpdateSwitch
+    window.onload = function(){
+        try{
+            connect();
+            var ID=getUrlParam("ID");
+            $("#ID").html("ID:"+ID);
+            document.getElementsByTagName("title")[0].innerText = "开关 ID:"+ID;
+            repeatLoopUpdateSwitch=setInterval("LoopUpdateSwitch()",3000)
+        }
+        catch(ex){}
+    }
+    window.onbeforeunload = function() {
+        try {
+            socket.close();
+            socket = null;
+        } catch(ex) {}
+    };
+	//从URL参数栏取得参数
+    function getUrlParam(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r!=null) return decodeURI(r[2]); return null; //返回参数值
+    }
+
+    //连接websocket
+    function connect() {
+        var host = "ws://box.miuser.net:9000/";
+        socket = new ReconnectingWebSocket(host);
+        try {
+            socket.onopen = function(msg) {
+                //alert("连接成功！");
+                $("#msg").html("服务器连接成功");
+                HeartBeat();
+            };
+            socket.onmessage = function(rsv) {
+                var respond=rsv.data.toString();
+                var source=respond.substring(7,9);
+                var len=parseInt(respond.substring(2,4));
+                var content=respond.substring(39,len-2);
+                if (source==="01")
+                {
+                    if(content==="Air208ONOK")
+                {
+
+                    remoteSWStatus="ON"
+                }
+                    if(content==="Air208OFFOK")
+                    {
+                        remoteSWStatus="OFF"
+                    }
+                    TTL=600;
+                    sendstatus="Done";
+                }
+            };
+
+            socket.onclose = function(msg) {
+                //alert("socket closed!")
+                $("#msg").html("伺服器连接异常");
+            };
+        } catch(ex) {
+            log(ex);
+        }
+    }
+    function HeartBeat() {
+        var ID=getUrlParam("ID");
+        var MM=getUrlParam("MM");
+        var msg = "004832A08"+ID+MM+"1234Air208STAT05";
+
+        socket.send(msg);
+
+    }
+    setInterval("HeartBeat()",300000);
+
+    function OnlineDetect() {
+        if (TTL>0)
+		{
+		    $("#device_online").html("设备正常");
+        }else
+		{
+            $("#device_online").html("设备离线");
+		}
+		TTL=TTL-1;
+
+    }
+    setInterval("OnlineDetect()",1000);
+
+    function SendCMD(cardcmd)
+    {
+        var ID=getUrlParam("ID");
+        var MM=getUrlParam("MM");
+        if(cardcmd=="on") socket.send("004832A08"+ID+MM+"1234Air208ON05");
+        if(cardcmd=="off") socket.send("004932A08"+ID+MM+"1234Air208OFF05");
+    }
+
+	var repeatLoopExeCMD
+
+    function setSwitch()
+	{
+	    	sendstatus="";
+
+        	//先执行一次，再每3s执行一次
+	    	LoopExeCMD();
+        	repeatLoopExeCMD=setInterval("LoopExeCMD()",3000)
+
+	}
+
+	//发送指令，直到状态被同步
+	function LoopExeCMD()
+	{
+	    	//设备不在线则不发送
+
+	    	if (TTL<0) return;
+	    	//sw是反向的，true 是 关闭，false 是打开
+            var sw=document.getElementById("toggle--knob")
+            if ((sw.checked === true) &&(remoteSWStatus!="OFF"))
+			{
+                SendCMD("off");
+                $("#online").html("正在更新开关状态...");
+                remoteSWStatus="UNKNOWN";
+            }
+            else if ((sw.checked === false) &&(remoteSWStatus!="ON"))
+			{
+                SendCMD("on");
+                $("#online").html("正在更新开关状态...");
+                remoteSWStatus="UNKNOWN";
+            }else
+			{
+                if (remoteSWStatus=="ON")
+				{
+				    $("#online").html("开关状态：打开");
+
+                }
+                if (remoteSWStatus=="OFF")
+				{
+				    $("#online").html("开关状态：关闭");
+                }
+                clearInterval(repeatLoopExeCMD);
+			}
+	}
+	//更新程序打开时的开关状态
+    function LoopUpdateSwitch()
+    {
+        //设备不在线则不发送
+        if (TTL<0) return;
+        //sw是反向的，true 是 关闭，false 是打开
+        var sw=document.getElementById("toggle--knob")
+        if ((remoteSWStatus!="ON")&&(remoteSWStatus!="OFF"))
+        {
+            HeartBeat();
+            $("#online").html("正在更新开关状态...");
+            remoteSWStatus="UNKNOWN";
+        }
+        else
+        {
+            if (remoteSWStatus=="ON")
+            {
+                $("#online").html("开关状态：打开");
+                $("#toggle--knob").attr("checked",false);
+            }
+            if (remoteSWStatus=="OFF")
+            {
+                $("#online").html("开关状态：关闭");
+                $("#toggle--knob").attr("checked",true);
+            }
+            clearInterval(repeatLoopUpdateSwitch);
+        }
+    }
+
+
+</script>
+</html>

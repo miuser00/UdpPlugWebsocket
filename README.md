@@ -43,10 +43,11 @@
 ![](./document/webtest.png)
 
 ## 目录结构 ##
-	.\UdpPlugWebsocket //UPWS服务程序（主服务程序）	
-	.\UdpPlugWebsocket\UdpExample //UDP测试程序 	
-	.\UPW_Browser //Websocket测试程序
-	.\bin_UPWS //编译后的Win32项目二进制文
+	.\UdpPlugWebsocket //UPWS服务程序源码（主服务程序）	
+	.\UdpPlugWebsocket\UdpExample源码 //UDP测试程序 	
+	.\UPW_Browser //Websocket测试程序源码
+	.\bin_UPWS //编译后的Win32项目二进制文件
+	.\html //H5前端源码
 	...	 //其余目录为参考代码目录，可删除	
 
 
