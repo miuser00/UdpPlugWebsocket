@@ -1,20 +1,27 @@
-
-
+## 版本： ##
+### Ver 0.22 ###
 
 ## 项目说明  ##
 
-公司要做物联网硬件产品，需要一个服务器组件桥接APP软件终端和物联网硬件。 目前比较火的MQTT物联网协议虽然技术先进，但进入门槛较高，用户也相对较为复杂。BG了一番没有找到合适的服务端开源代码，就决定使用自己比较熟悉的.Net技术从头开发一个服务器组件。于是开了这个repository，如果能帮到你，我很高兴。 有问题欢迎与我微信联系： 微信号miuser00，加好友请注明您的来意。
+
+
+
+通过手机APP终端借助一台中间服务器连接到物联网硬件设备，这是一个非常一般性的用户需求。 目前比较流行的的阿里云等MQTT系物联网协议虽然技术先进，但进入门槛较高，用户也使用相对较为复杂，未来的成本也不容乐观。 因此出于兴趣爱好决定自己搞一个这样的服务器程序项目。项目使用自己比较熟悉的.Net技术，基于C#编写。 未来也有可能会迁移到Linux环境下。
 
 ## 项目功能 ##
-这是一个独立的可执行Win32服务端程序，用于桥接终端APP和物联网硬件。 APP端为Websocet接口的静态html页面，硬件端为基于Arduino开发的电路，与服务器通讯使用UDP协议通讯（注：为方便您的使用，本Respository亦提供了一个C#编写的简易UDP测试程序用来模拟硬件设备）。 APP通过Webscoket接口发送一个自定义的字符串报文给服务端，服务端根据报文中的ID把报文转发给相同ID的UDP硬件设备（或UDP测试程序）。
+这是一个独立的可执行Win32服务端程序，用于桥接终端APP和物联网硬件。 APP端为Websocet接口的静态html页面，硬件端为基于合宙Luat2G通讯模块。 模块与服务器通讯使用UDP协议通讯。 基本通讯方式如下： Html5页面通过Webscoket接口发送一个自定义的字符串报文给服务端，服务端根据报文中的ID把报文转发给相同ID的UDP硬件设备（或UDP测试程序）
+
+与UPWS相适配的基于合宙Air系列2G模块的开源硬件在以下地址
+
+  https://github.com/miuser00/V3R_DemoBoard
+
+为方便您的使用，本Respository提供了一个C#编写的简易UDP测试程序用来模拟硬件设备。
 
 ![](./document/preview.png)
 
 ## 使用方法 ##
 
 在本地windows环境下运行.\UdpPlugWebsocket\bin\Debug\UdpPlugWebsocket.exe即可按照config.xml中描述的端口启动服务程序。默认UDP端口为7101，Websocket端口为9000。此时外部的UDP连接和Websocket连接都会在UI中显示。其中UDP在终端设备页面中显示，Websocket连接在控制页面中显示，通讯状况在交换面板页面中显示。您可以通过配置->显示调试系信息 打开或关闭UI的通讯Log。
-
-
 
 
 ## 数据包格式 （UDP与Websocket相同）##
@@ -45,17 +52,31 @@
 
 ##编译环境##
 Visual Studio 2015,C#,Win10
+
+
+##测试地址##
+
+您可以尝试在以下地址测试UPWS服务器
+
+UDP服务端口：udp://box.miuser.net:7101 （Luat 2G通讯模块连接的UDP端口）
+
+Websocket服务端口：ws://box.miuser.net:9000 （前端js代码连接的websocket端口）
+
+H5前端测试页面地址：http://www.miuser.net/box/switch.htm （需要再地址上加上设备参数后缀再使用）
+
+前端测试样例：http://www.miuser.net/box/switch.htm?ID=9030026845&MM=HlPpA86131853284 （请自行修改ID和MM）
 	
 ## 使用到的开源库 ##
+- 
 - Websocket-Sharp
 - https://github.com/sta/websocket-sharp
 - Coldairarrow.Util.Sockets	
 - https://github.com/Coldairarrow/Sockets
-
+  https://github.com/miuser00/V3R_DemoBoard
 
 ## 关键词  ##
 
-C#,Websocket,UDP,物联网,异步编程,接口,lamda表达式,线程池,Action,Invoke,Arduino,ESP8266
+C#,Websocket,UDP,物联网,异步编程,接口,lamda表达式,线程池,Action,Invoke,Arduino,Air208，Luat
 
 ## 版权声明 ##
 
